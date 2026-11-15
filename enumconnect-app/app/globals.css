@@ -89,3 +89,30 @@ h2 > span { color: #789351; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
+
+:root {
+  --color-primary: #000080;
+  --color-text-primary: #212121;
+  --color-text-body: #424242;
+  --color-text-secondary: #575757;
+  --color-text-placeholder: #8e8e8e;
+  --color-text-on-action: #ffffff;
+  --color-text-link: #000080;
+  --color-bg-page: #f8fffc;
+  --color-bg-surface: #ffffff;
+  --color-bg-subtle: #f3f3f3;
+  --color-bg-selected: #f1f1ff;
+  --color-border-default: #b3b3b3;
+  --color-border-subtle: #d4d4d4;
+  --color-border-focus: #000080;
+  --color-border-error: #c62828;
+  --color-control-checked: #000080;
+  --color-control-trust: #2f9d63;
+  --color-banner-bg: #e3f5eb;
+  --color-banner-text: #1b6a40;
+  --color-tab-track: #dcdcf7;
+  --color-amber: #f8be00;
+  --color-border: #e4e4f2;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
