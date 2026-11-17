@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
-const points = [
+const defaultPoints = [
   "Legitimate, funded research projects",
   "Paid for approved work",
   "A verified record of your fieldwork",
@@ -18,7 +18,7 @@ function Tick() {
   );
 }
 
-function SampleCard() {
+export function SampleCard() {
   return (
     <div className="absolute right-0 bottom-0 w-[290px] rounded-xl bg-white p-4 shadow-lg">
       <div className="flex items-start gap-3">
@@ -46,15 +46,45 @@ function SampleCard() {
   );
 }
 
+export function StatCard() {
+  return (
+    <div className="absolute -right-4 bottom-0 flex h-[90px] w-[236px] flex-col justify-between rounded-xl bg-white p-4 shadow-lg">
+      <span className="text-xs leading-4 text-[color:var(--color-text-secondary)]">Responses reviewed</span>
+      <div className="flex items-baseline justify-between">
+        <span className="text-2xl leading-8 font-extrabold text-[color:var(--color-text-primary)]">
+          32 <span className="text-xs font-normal text-[color:var(--color-text-secondary)]">of 40</span>
+        </span>
+        <span className="text-sm font-bold text-[color:var(--color-control-trust)]">80%</span>
+      </div>
+      <div className="h-1.5 w-full rounded-full bg-[color:var(--color-bg-subtle)]">
+        <div className="h-full w-[80%] rounded-full bg-[color:var(--color-control-trust)]" />
+      </div>
+    </div>
+  );
+}
+
+export type ShellContent = {
+  headline?: ReactNode;
+  points?: string[];
+  photo?: string;
+  card?: ReactNode;
+};
+
 export function AuthShell({
   topRight,
   className = "",
+  headline = (
+    <>
+      Paid research work,
+      <br />
+      close to home.
+    </>
+  ),
+  points = defaultPoints,
+  photo = "/enumerator-photo.png",
+  card = <SampleCard />,
   children,
-}: {
-  topRight: ReactNode;
-  className?: string;
-  children: ReactNode;
-}) {
+}: ShellContent & { topRight: ReactNode; className?: string; children: ReactNode }) {
   return (
     <div className={`${nunito.className} flex min-w-[1100px] bg-[color:var(--color-bg-page)] ${className}`}>
       <aside className="relative w-[600px] shrink-0 bg-[color:var(--color-primary)] text-[color:var(--color-text-on-action)]">
@@ -64,9 +94,7 @@ export function AuthShell({
           aria-level={1}
           className="absolute top-[156px] left-16 text-[40px] leading-[52px] font-extrabold tracking-[-0.4px] whitespace-nowrap"
         >
-          Paid research work,
-          <br />
-          close to home.
+          {headline}
         </div>
         <ul className="absolute top-[300px] left-16 flex flex-col gap-4 text-base leading-6">
           {points.map((t) => (
@@ -78,8 +106,8 @@ export function AuthShell({
         </ul>
         <div className="absolute top-[456px] left-16 h-[363px] w-[494px]">
           <div className="absolute top-6 left-6 h-[339px] w-[470px] rounded-2xl bg-[color:var(--color-control-trust)]" />
-          <img src="/enumerator-photo.png" alt="" className="absolute top-0 left-0 h-[339px] w-[470px] rounded-2xl object-cover" />
-          <SampleCard />
+          <img src={photo} alt="" className="absolute top-0 left-0 h-[339px] w-[470px] rounded-2xl object-cover" />
+          {card}
         </div>
         <p className="absolute bottom-[42px] left-16 text-base leading-6">Reliable Research. Empowered Professionals.</p>
       </aside>
