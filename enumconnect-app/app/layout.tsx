@@ -1,19 +1,23 @@
+import { Nunito } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-nunito",
+});
+
 export const metadata: Metadata = {
-  title: "Enumconnect — Good things are connecting",
+  title: "Enumconnect — Research powered by people",
   description:
-    "Enumconnect is under development. Come back a little later, and play Mario Run or Ninja Jump while we get things ready.",
+    "Connect with verified field professionals, coordinate research projects across Nigeria, and manage fieldwork through one trusted platform.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <body className={nunito.className}>{children}</body>
     </html>
   );
 }

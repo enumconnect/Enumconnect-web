@@ -1,13 +1,27 @@
-import { AuthShell } from "@/components/auth/AuthShell";
+import { AuthShell } from "@/features/auth/components/AuthShell";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/FormParts";
 
 const link = "font-bold text-[color:var(--color-text-link)]";
-const next = ["Add your ID, skills and languages", "Complete the short training", "Apply for projects once verified"];
+const next = [
+  "Add your ID, skills and languages",
+  "Complete the short training",
+  "Apply for projects once verified",
+];
 
 function Arrow() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M13 8H3M7 4L3 8l4 4" />
     </svg>
   );
@@ -15,7 +29,18 @@ function Arrow() {
 
 function Mail() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[color:var(--color-text-link)]">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="text-[color:var(--color-text-link)]"
+    >
       <rect x="2.5" y="4.5" width="15" height="11" rx="2" />
       <path d="M3 6l7 5 7-5" />
     </svg>
@@ -38,19 +63,29 @@ export default function EnumeratorVerify() {
           Back to sign-up
         </div>
         <div className="mt-[33px]">
-          <div role="heading" aria-level={1} className="text-2xl leading-[33px] font-extrabold text-[color:var(--color-text-link)]">
+          <div
+            role="heading"
+            aria-level={1}
+            className="text-2xl leading-[33px] font-extrabold text-[color:var(--color-text-link)]"
+          >
             Verify your phone and email
           </div>
-          <p className="mt-1 text-xs leading-4 font-semibold text-[color:var(--color-text-secondary)]">Step 2 of 2 · almost done</p>
+          <p className="mt-1 text-xs leading-4 font-semibold text-[color:var(--color-text-secondary)]">
+            Step 2 of 2 · almost done
+          </p>
         </div>
         <ProgressBar value={100} className="mt-3" />
         <p className="mt-4 text-sm leading-[22px] text-[color:var(--color-text-body)]">
           Thanks, Ibrahim. We sent a 6-digit code to
           <br />
-          <span className="font-bold text-[color:var(--color-text-primary)]">+234 801 234 5678</span>
+          <span className="font-bold text-[color:var(--color-text-primary)]">
+            +234 801 234 5678
+          </span>
         </p>
         <div className="mt-6 flex flex-col gap-2">
-          <span className="text-sm leading-5 font-bold text-[color:var(--color-text-primary)]">Enter code</span>
+          <span className="text-sm leading-5 font-bold text-[color:var(--color-text-primary)]">
+            Enter code
+          </span>
           <div className="grid grid-cols-6 gap-2">
             {[0, 1, 2, 3, 4, 5].map((i) => (
               <input
@@ -65,7 +100,8 @@ export default function EnumeratorVerify() {
         </div>
         <div className="mt-4 flex justify-between text-xs leading-4 text-[color:var(--color-text-secondary)]">
           <span>
-            Didn&apos;t get it? <span className={link}>Resend code in 0:45</span>
+            Didn&apos;t get it?{" "}
+            <span className={link}>Resend code in 0:45</span>
           </span>
           <span>
             Wrong number? <span className={link}>Change it</span>
@@ -80,9 +116,15 @@ export default function EnumeratorVerify() {
               <Mail />
             </span>
             <div>
-              <div className={`text-sm leading-5 ${link}`}>Check your email too</div>
-              <div className="mt-1 text-xs leading-4 text-[color:var(--color-text-secondary)]">We sent a link to confirm</div>
-              <div className="mt-1 text-xs leading-4 font-bold text-[color:var(--color-text-primary)]">ibrahim.musa@example.com</div>
+              <div className={`text-sm leading-5 ${link}`}>
+                Check your email too
+              </div>
+              <div className="mt-1 text-xs leading-4 text-[color:var(--color-text-secondary)]">
+                We sent a link to confirm
+              </div>
+              <div className="mt-1 text-xs leading-4 font-bold text-[color:var(--color-text-primary)]">
+                ibrahim.musa@example.com
+              </div>
               <div className="mt-3 flex items-center gap-3">
                 <Button variant="outline">Open email app</Button>
                 <Button variant="text">Resend link</Button>
@@ -91,10 +133,15 @@ export default function EnumeratorVerify() {
           </div>
         </div>
         <div className="mt-5 rounded-xl bg-[color:var(--color-banner-bg)] px-5 py-4">
-          <div className="text-xs leading-4 font-bold text-[color:var(--color-text-primary)]">What happens next</div>
+          <div className="text-xs leading-4 font-bold text-[color:var(--color-text-primary)]">
+            What happens next
+          </div>
           <ol className="mt-3 flex flex-col gap-3">
             {next.map((t, i) => (
-              <li key={t} className="flex items-center gap-3 text-xs leading-4 font-semibold text-[color:var(--color-text-body)]">
+              <li
+                key={t}
+                className="flex items-center gap-3 text-xs leading-4 font-semibold text-[color:var(--color-text-body)]"
+              >
                 <span
                   className={`grid size-[22px] shrink-0 place-items-center rounded-full text-[11px] font-bold ${
                     i === 0

@@ -1,33 +1,33 @@
-import GameRunner from "./game-runner";
-import Link from "next/link";
+import { Navbar } from "@/features/landing/components/Navbar";
+import { Hero } from "@/features/landing/components/Hero";
+import { AudienceSection } from "@/features/landing/components/AudienceSection";
+import { HowEnumWorks } from "@/features/landing/components/HowEnumWorks";
+import { WhyChooseEnumConnect } from "@/features/landing/components/WhyChooseEnumConnect";
+import { OpenProjects } from "@/features/landing/components/OpenProjects";
+import { TrustSection } from "@/features/landing/components/TrustSection";
+import { FAQ } from "@/features/landing/components/FAQ";
+import { FinalCTA } from "@/features/landing/components/FinalCTA";
+import { Footer } from "@/features/landing/components/Footer";
+import { FindEnumerators } from "@/features/landing/components/FindEnumerator";
+import { FindRightPeople } from "@/features/landing/components/FindRightPeople";
 
 export default function Home() {
   return (
-    <div className="site-shell">
-      <header className="site-header">
-        <Link className="brand" href="/" aria-label="Enumconnect home">
-          <span className="brand-icon" aria-hidden="true">e<span>·</span></span>
-          enumconnect<span className="brand-period">.</span>
-        </Link>
-        <span className="header-note"><span className="status-dot" /> A little work in progress</span>
-      </header>
-      <main className="landing">
-        <section className="intro" aria-labelledby="page-title">
-          <span className="eyebrow"><span className="status-dot" /> UNDER DEVELOPMENT</span>
-          <h1 id="page-title">Good things<br />are <span>connecting.</span></h1>
-          <p className="intro-copy">We’re building something we can’t wait to share with you. Enumconnect is still under development, and we’re giving every detail a little extra care.</p>
-          <div className="return-note">
-            <span className="note-icon" aria-hidden="true">↗</span>
-            <div><strong>Come back a little later.</strong><p>We’ll be here, a little closer to ready.</p></div>
-          </div>
-          <div className="handwritten" aria-hidden="true">In the meantime, take a little adventure break <span>⤴</span></div>
-        </section>
-        <GameRunner />
+    <div className="bg-white">
+      <Navbar />
+      <main>
+        <Hero />
+        <AudienceSection />
+        <FindRightPeople/>
+        <FindEnumerators />
+        <HowEnumWorks />
+        <WhyChooseEnumConnect />
+        <OpenProjects />
+        <TrustSection />
+        <FAQ />
+        <FinalCTA />
       </main>
-      <footer className="site-footer">
-        <span>© Enumconnect. All rights reserved.</span>
-        <span>Something worth the wait.<span className="footer-spark" aria-hidden="true"> ✳</span></span>
-      </footer>
+      <Footer />
     </div>
   );
 }
