@@ -31,7 +31,7 @@ export function HowEnumWorks() {
      
         <div className="mb-[30px] text-center max-[640px]:mb-6">
           <h2 className="m-0 text-[clamp(28px,3vw,40px)] font-extrabold leading-[1.15] tracking-[-1.2px] text-[#000080]">
-            How Enumconnect works
+            How EnumConnect works
           </h2>
           <p className="mb-0 mt-[9px] text-[18px] font-normal text-[#424242] max-[640px]:text-[14px]">
             From Finding Field Data Collectors to Managing Research Submissions
@@ -76,7 +76,7 @@ export function HowEnumWorks() {
           className="grid grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] items-center gap-[clamp(35px,6vw,76px)] max-[640px]:grid-cols-1 max-[640px]:gap-10"
         >
        
-          <div className="relative mb-5 mr-6 aspect-square max-[640px]:aspect-[4/3]">
+          <div className="relative mb-5 mr-6 aspect-square max-[640px]:mr-0 max-[640px]:aspect-square">
             <div
               aria-hidden="true"
               className="absolute inset-0 translate-x-3 translate-y-3 rounded-[26px] bg-[#2F9D63]"
@@ -88,10 +88,18 @@ export function HowEnumWorks() {
                 alt={panel.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, 430px"
-                className="object-cover"
+                className="object-cover max-[640px]:hidden"
+              />
+              <Image
+                key={panel.mobileImage}
+                src={panel.mobileImage}
+                alt={panel.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, 430px"
+                className="hidden object-cover max-[640px]:block"
               />
             </div>
-            <div className="absolute -bottom-[10px] -right-[34px] max-[640px]:-right-[10px]">
+            <div className="absolute -bottom-[10px] -right-[34px] max-[640px]:hidden">
               {cards[panel.card]}
             </div>
           </div>
@@ -129,16 +137,16 @@ export function HowEnumWorks() {
             </ol>
 
             {/* actions */}
-            <div className="ml-12 mt-2 flex flex-wrap items-center gap-[18px] max-[640px]:ml-[42px]">
+            <div className="ml-12 mt-2 flex flex-wrap items-center gap-[18px] max-[640px]:ml-0 max-[640px]:flex-col max-[640px]:gap-[18px]">
               <Link
                 href={panel.cta.href}
-                className="inline-flex min-h-[42px] items-center justify-center rounded-[7px] bg-[#000080] px-[18px] text-base font-bold text-white no-underline transition-colors hover:bg-[#17179b]"
+                className="inline-flex min-h-[42px] items-center justify-center rounded-[7px] bg-[#000080] px-[18px] text-base font-bold text-white no-underline transition-colors hover:bg-[#17179b] max-[640px]:min-h-[58px] max-[640px]:w-full"
               >
                 {panel.cta.label}
               </Link>
               <Link
                 href="#faq"
-                className="text-base font-bold text-[#000080] no-underline hover:underline"
+                className="text-base font-bold text-[#000080] no-underline hover:underline max-[640px]:w-full max-[640px]:text-center"
               >
                 Questions? Read the FAQ
               </Link>
