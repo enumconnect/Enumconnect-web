@@ -11,7 +11,10 @@ const pilotLocations = ["Lagos", "Ogun", "Oyo", "Osun", "Abuja (FCT)"];
 
 export const FindEnumerators = () => {
   return (
-    <section className="bg-[#E3F2FF] py-[80px] max-[640px]:py-[54px]">
+    <section
+      className="bg-[#E3F2FF] py-[80px] max-[640px]:py-[54px]"
+      id="locations"
+    >
       <div className="mx-auto grid w-[min(calc(100%-48px),1200px)] grid-cols-2 items-center gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-10 max-[640px]:w-[min(calc(100%-32px),480px)]">
         {/* LEFT: text */}
         <div>
@@ -22,7 +25,7 @@ export const FindEnumerators = () => {
 
           <p className="mt-5 mb-0 max-w-140 text-[18px] font-[400px] leading-[1.6] text-[#424242] max-[640px]:text-[15px]">
             Research often requires people who understand the communities
-            they're working in. Find field data collectors based in your
+            they&apos;re working in. Find field data collectors based in your
             preferred location, with relevant local language skills and cultural
             familiarity.
           </p>
@@ -46,7 +49,7 @@ export const FindEnumerators = () => {
 
           <Link
             href="/locations"
-            className="mt-9 inline-block rounded-lg bg-[#000080] px-6 py-[15px] text-[16px] font-bold text-white transition hover:bg-[#00006b]"
+            className="mt-9 inline-flex min-h-12 items-center justify-center rounded-lg bg-[#000080] px-6 py-3.5 text-[16px] font-bold text-white transition hover:bg-[#00006b] max-[640px]:w-full"
           >
             Browse Locations
           </Link>
@@ -63,6 +66,9 @@ export const FindEnumerators = () => {
               sizes="(max-width: 900px) 100vw, 534px"
               className="object-cover"
             />
+            <span className="absolute left-5 top-5 hidden rounded-full bg-white px-5 py-3 text-[20px] font-extrabold text-[#2F9D63] shadow-sm max-[640px]:block">
+              Pilot locations
+            </span>
           </div>
 
           {/* card body */}

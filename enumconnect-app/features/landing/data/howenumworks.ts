@@ -4,6 +4,7 @@ export type Role = "researchers" | "enumerators";
 
 export type Panel = {
   image: string;
+  mobileImage: string;
   alt: string;
   card: "project" | "training";
   steps: { title: string; body: string }[];
@@ -18,6 +19,7 @@ export const tabs: { id: Role; label: string }[] = [
 export const panels: Record<Role, Panel> = {
   researchers: {
     image: "/images/howenumconnectimage.svg",
+    mobileImage: "/images/howreesearchermobile.svg",
     alt: "Students collaborating on research with a laptop",
     card: "project",
     steps: [
@@ -42,6 +44,7 @@ export const panels: Record<Role, Panel> = {
   },
   enumerators: {
     image: "/images/howenumerator.svg",
+    mobileImage: "/images/howenumeratormobile.svg",
     alt: "Field enumerators collecting data on a phone",
     card: "training",
     steps: [

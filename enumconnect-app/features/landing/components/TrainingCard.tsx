@@ -19,7 +19,7 @@ export const TrainingCard = () => {
     );
   }
   return (
-    <div className="w-[300px] rounded-2xl bg-white px-4 py-4 shadow-[0_12px_30px_-10px_rgba(0,0,128,0.25)] max-[640px]:w-[210px]">
+    <div className="w-[300px] rounded-2xl bg-white px-4 py-4 shadow-[0_12px_30px_-10px_rgba(0,0,128,0.25)] max-[640px]:w-[250px]">
       <div className="flex items-center justify-between">
         <p className="m-0 text-base font-bold text-[#212121]">Your training</p>
         <span className="rounded-full bg-[#E3F5EB]  px-2 py-0.5 text-[12px] font-bold text-[#1B6A40]">

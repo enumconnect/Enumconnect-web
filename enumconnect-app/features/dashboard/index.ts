@@ -1,0 +1,11 @@
+export { DashboardShell } from "@/features/dashboard/components/DashboardShell";
+export { WelcomeView } from "./components/WelcomeView";
+export { ActiveView } from "./components/ActiveView";
+export { SuspendedView } from "./components/SuspendedView";
+export { CreateProjectButton } from "./components/CreateProjectButton";
+export { getResearcher } from "./lib/getResearcher";
+export { getDashboardSummary } from "./lib/getDashboardSummary";
+export { getFirstName, getInitials } from "@/features/dashboard/lib/name";
+export { getGreeting } from "./lib/greeting";
+export { profileProgress, createProjectAccess } from "./lib/profile";
+export type { Researcher, AccountStatus, ProfileFields } from "@/features/dashboard/type";

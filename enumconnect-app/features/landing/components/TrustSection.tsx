@@ -22,18 +22,38 @@ export function TrustSection() {
 
         {/* trust grid */}
         <div className="grid grid-cols-2 gap-[22px] max-[640px]:grid-cols-1 max-[640px]:gap-4">
-          <Image
-            src="/images/Card-Verification.svg"
-            alt="verify"
-            width={588}
-            height={620}
-          />
-          <Image
-            src="/images/Card-Payments.svg"
-            alt="payment"
-            width={588}
-            height={620}
-          />
+          <div>
+            <Image
+              src="/images/Card-Verification.svg"
+              alt="How EnumConnect verifies enumerators"
+              width={588}
+              height={620}
+              className="h-auto w-full max-[640px]:hidden"
+            />
+            <Image
+              src="/images/Card-Verificationmobile (1).svg"
+              alt="How EnumConnect verifies enumerators"
+              width={588}
+              height={620}
+              className="hidden h-auto w-full max-[640px]:block"
+            />
+          </div>
+          <div>
+            <Image
+              src="/images/Card-Payments.svg"
+              alt="How EnumConnect payments work"
+              width={588}
+              height={620}
+              className="h-auto w-full max-[640px]:hidden"
+            />
+            <Image
+              src="/images/Card-Paymentsmobile (1).svg"
+              alt="How EnumConnect payments work"
+              width={588}
+              height={620}
+              className="hidden h-auto w-full max-[640px]:block"
+            />
+          </div>
         </div>
       </div>
     </section>

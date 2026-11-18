@@ -1,33 +1,33 @@
 export const linkGroups = [
   {
+    title: "Platform",
+    links: [
+      ["Home", "/"],
+      ["Browse Skills", "/#for-researchers"],
+      ["Browse Locations", "/#locations"],
+      ["Features", "/#trust"],
+    ],
+  },
+  {
     title: "For researchers",
     links: [
-      ["Post a project", "/signup?role=researcher"],
-      ["How it works", "/#how-it-works"],
-      ["Verification", "/#faq"],
-      ["FAQ for researchers", "/#faq"],
+      ["Find Enumerators", "/#for-researchers"],
+      ["Create a Project", "/signup?role=researcher"],
+      ["How It Works", "/#how-it-works"],
     ],
   },
   {
     title: "For enumerators",
     links: [
       ["Join as an enumerator", "/signup?role=enumerator"],
-      ["Training", "/#for-enumerators"],
-      ["Getting paid", "/#trust"],
-      ["FAQ for enumerators", "/#faq"],
+      ["Find Fieldwork Opportunities", "/#open-projects"],
+      ["How Verification Works", "/#trust"],
     ],
   },
   {
-    title: "Company",
+    title: "Company & Legal",
     links: [
       ["About Enumconnect", "/#about"],
-      ["Contact us", "mailto:hello@enumconnect.com"],
-      ["Help centre", "mailto:hello@enumconnect.com"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
       ["Terms of service", "/terms"],
       ["Privacy policy", "/privacy"],
       ["Data protection (NDPR)", "/privacy"],
