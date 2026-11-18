@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/features/landing/components/Navbar";
 import { Hero } from "@/features/landing/components/Hero";
 import { AudienceSection } from "@/features/landing/components/AudienceSection";
@@ -11,6 +12,12 @@ import { Footer } from "@/features/landing/components/Footer";
 import { FindEnumerators } from "@/features/landing/components/FindEnumerator";
 import { FindRightPeople } from "@/features/landing/components/FindRightPeople";
 
+export const metadata: Metadata = {
+  title: "Research Data Collection Platform in Nigeria | EnumConnect",
+  description:
+    "Find verified field data collectors, manage research projects, and organise fieldwork with EnumConnect, built for researchers and organisations in Nigeria.",
+};
+
 export default function Home() {
   return (
     <div className="bg-white">
@@ -18,7 +25,7 @@ export default function Home() {
       <main>
         <Hero />
         <AudienceSection />
-        <FindRightPeople/>
+        <FindRightPeople />
         <FindEnumerators />
         <HowEnumWorks />
         <WhyChooseEnumConnect />
