@@ -18,7 +18,7 @@ export const FAQ = () => {
           </h2>
           <p className="mt-4 mb-0 text-[16px] leading-[1.5] text-[#424242]">
             Here are some things you may want to know before getting started
-            with Enumconnect.
+            with EnumConnect.
           </p>
         </div>
 
