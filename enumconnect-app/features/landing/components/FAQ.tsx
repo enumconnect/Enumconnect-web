@@ -31,7 +31,7 @@ export const FAQ = () => {
           </h2>
           <p className="mb-[25px] mt-3 max-w-[500px] text-[18px] font-normal leading-[1.5] text-[#424242]">
             Here are some things you may want to know before getting started
-            with Enumconnect.
+            with EnumConnect.
           </p>
 
           <div className="rounded-xl bg-[#E3F2FF] p-[18px] max-[640px]:max-w-[360px]">

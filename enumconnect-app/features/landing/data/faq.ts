@@ -2,18 +2,18 @@ export type Role = "researchers" | "enumerators";
 export type QA = [question: string, answer: string];
 
 export const tabs: { id: Role; label: string }[] = [
-  { id: "researchers", label: "For researchers" },
-  { id: "enumerators", label: "For enumerators" },
+  { id: "researchers", label: "For Researchers" },
+  { id: "enumerators", label: "For Enumerators" },
 ];
 
 export const questions: Record<Role, QA[]> = {
   researchers: [
     [
-      "What is Enumconnect?",
+      "What is EnumConnect?",
       "Enumconnect is a research data collection platform in Nigeria that connects researchers with field professionals and manages projects and data submissions in one place.",
     ],
     [
-      "Who can use Enumconnect?",
+      "Who can use EnumConnect?",
       "Undergraduate and postgraduate students, lecturers, independent academic researchers, research teams, NGOs and organisations that need support with field data collection.",
     ],
     [
@@ -31,7 +31,7 @@ export const questions: Record<Role, QA[]> = {
   ],
   enumerators: [
     [
-      "How do I become an enumerator on Enumconnect?",
+      "How do I become an enumerator on EnumConnect?",
       "Create an account, complete your profile, and submit the required information. Once your profile has been verified, you can explore and apply for suitable projects.",
     ],
 
