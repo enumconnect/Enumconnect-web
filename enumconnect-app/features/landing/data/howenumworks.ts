@@ -1,5 +1,3 @@
-
-
 export type Role = "researchers" | "enumerators";
 
 export type Panel = {
@@ -12,8 +10,8 @@ export type Panel = {
 };
 
 export const tabs: { id: Role; label: string }[] = [
-  { id: "researchers", label: "For researchers" },
-  { id: "enumerators", label: "For enumerators" },
+  { id: "researchers", label: "For Researchers" },
+  { id: "enumerators", label: "For Enumerators" },
 ];
 
 export const panels: Record<Role, Panel> = {
