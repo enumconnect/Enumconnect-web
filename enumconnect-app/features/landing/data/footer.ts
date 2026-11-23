@@ -9,7 +9,7 @@ export const linkGroups = [
     ],
   },
   {
-    title: "For researchers",
+    title: "For Researchers",
     links: [
       ["Find Enumerators", "/#for-researchers"],
       ["Create a Project", "/sign-up/researcher"],
@@ -17,7 +17,7 @@ export const linkGroups = [
     ],
   },
   {
-    title: "For enumerators",
+    title: "For Enumerators",
     links: [
       ["Join as an enumerator", "/sign-up/enumerator"],
       ["Find Fieldwork Opportunities", "/#open-projects"],
@@ -27,7 +27,7 @@ export const linkGroups = [
   {
     title: "Company & Legal",
     links: [
-      ["About Enumconnect", "/#about"],
+      ["About EnumConnect", "/#about"],
       ["Terms of service", "/terms"],
       ["Privacy policy", "/privacy"],
       ["Data protection (NDPR)", "/privacy"],
