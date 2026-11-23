@@ -1,13 +1,15 @@
 "use client";
 
 import { useId, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { PhoneField } from "@/components/ui/FormParts";
 import { InfoBanner } from "@/components/ui/InfoBanner";
 import { TextField } from "@/components/ui/TextField";
-import { signupSchema } from "@/lib/validation/auth";
+import { signupSchema } from "@/features/auth/lib/validation";
 
 type Role = "enumerator" | "researcher";
-type Field = "fullName" | "email" | "password";
+type Field = "fullName" | "email" | "password" | "phone";
 type Values = Record<Field, string>;
 
 const label = "text-sm leading-5 font-bold text-[color:var(--color-text-primary)]";
@@ -18,13 +20,19 @@ const link = "font-bold text-[color:var(--color-text-link)] underline";
 function describe(field: Field, code: string, minimum: unknown) {
   if (field === "fullName") return "Enter your full name.";
   if (field === "email") return "Enter a valid email address.";
+  if (field === "phone") return "Enter a valid Nigerian mobile number.";
   if (code === "too_small" && typeof minimum === "number") return `Use at least ${minimum} characters.`;
   if (code === "too_big") return "That password is too long.";
+  if (field === "password" && (code === "custom" || code === "invalid_format")) return "Include at least one number.";
   return "Enter a valid password.";
 }
 
 function check(values: Values, role: Role) {
-  const result = signupSchema.safeParse({ ...values, role });
+  const result = signupSchema.safeParse({
+    ...values,
+    phone: `+234${values.phone}`,
+    role,
+  });
   const errors: Partial<Record<Field, string>> = {};
   if (result.success) return { data: result.data, errors };
   for (const issue of result.error.issues) {
@@ -152,12 +160,12 @@ export function SignUpForm({
   bannerText: string;
   extra: ReactNode;
 }) {
-  const [values, setValues] = useState<Values>({ fullName: "", email: "", password: "" });
+  const router = useRouter();
+  const [values, setValues] = useState<Values>({ fullName: "", email: "", password: "", phone: "" });
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [terms, setTerms] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
   const [formError, setFormError] = useState("");
 
   const { data, errors } = check(values, role);
@@ -178,7 +186,9 @@ export function SignUpForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (res.status === 201) setDone(true);
+      if (res.status === 201) {
+        router.push(`/verify-account/${role}?email=${encodeURIComponent(data.email)}`);
+      }
       else if (res.status === 400) setFormError("We couldn't create your account. Check your details and try again.");
       else if (res.status === 429) setFormError("Too many attempts. Please wait a moment and try again.");
       else setFormError("Something went wrong. Please try again.");
@@ -215,6 +225,11 @@ export function SignUpForm({
         />
       </div>
       <div className="mt-4 flex flex-col gap-4">
+        <PhoneField
+          value={values.phone}
+          onChange={(phone) => setValues((current) => ({ ...current, phone }))}
+          error={shown("phone")}
+        />
         {extra}
         <PasswordInput
           value={values.password}
@@ -235,10 +250,10 @@ export function SignUpForm({
           {formError}
         </div>
       ) : null}
-      <Button type="submit" fullWidth disabled={submitting || done} className="mt-6 disabled:opacity-60">
+      <Button type="submit" fullWidth disabled={submitting} className="mt-6 disabled:opacity-60">
         {submitting ? "Creating account…" : "Create account"}
       </Button>
-      <InfoBanner className="mt-6">{done ? "Check your email to confirm your account." : bannerText}</InfoBanner>
+      <InfoBanner className="mt-6">{bannerText}</InfoBanner>
     </form>
   );
 }

@@ -1,11 +1,30 @@
-import { VerifyScreen } from "@/features/auth/components/VerifyScreen";
+import { Suspense } from "react";
+import { VerifyScreen } from "@/features/auth";
 
-export default function EnumeratorVerify() {
+export default function EnumeratorVerify({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string | string[] }>;
+}) {
+  return (
+    <Suspense fallback={<div role="status" className="grid min-h-screen place-items-center text-[#575757]">Loading verification…</div>}>
+      <EnumeratorVerifyContent searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+async function EnumeratorVerifyContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const email = typeof query.email === "string" ? query.email : "";
+
   return (
     <VerifyScreen
-      name="Ibrahim"
-      phone="+234 801 234 5678"
-      email="ibrahim.musa@example.com"
+      role="enumerator"
+      initialEmail={email}
       next={["Add your ID, skills and languages", "Complete the short training", "Apply for projects once verified"]}
     />
   );

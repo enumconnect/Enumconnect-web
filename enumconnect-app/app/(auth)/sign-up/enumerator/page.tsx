@@ -1,6 +1,6 @@
-import { AuthShell } from "@/features/auth/components/AuthShell";
-import { SignUpForm } from "@/features/auth/components/SignUpForm";
-import { PhoneField, ProgressBar, SelectField } from "@/components/ui/FormParts";
+import Link from "next/link";
+import { AuthShell, SignUpForm } from "@/features/auth";
+import { ProgressBar, SelectField } from "@/components/ui/FormParts";
 import { RoleTabs } from "@/components/ui/RoleTabs";
 
 const link = "font-bold text-[color:var(--color-text-link)]";
@@ -8,10 +8,9 @@ const link = "font-bold text-[color:var(--color-text-link)]";
 export default function EnumeratorSignUp() {
   return (
     <AuthShell
-      className="min-h-[1042px]"
       topRight={
         <>
-          Already have an account? <span className={link}>Log in</span>
+          Already have an account? <Link href="/login" className={link}>Log in</Link>
         </>
       }
     >
@@ -33,7 +32,6 @@ export default function EnumeratorSignUp() {
           bannerText="Free to join. You never pay to apply for projects."
           extra={
             <>
-              <PhoneField />
               <div className="grid grid-cols-2 gap-4">
                 <SelectField label="State" placeholder="Select state" />
                 <SelectField label="Main LGA" placeholder="Select LGA" />

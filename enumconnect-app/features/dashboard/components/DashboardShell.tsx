@@ -7,10 +7,10 @@ import { Bell, ChevronDown } from "lucide-react";
 import { getFirstName, getInitials } from "@/features/dashboard/lib/name";
 
 const nav = [
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Projects", href: "/projects" },
-  { label: "Messages", href: "/messages" },
-  { label: "Payments", href: "/payments" },
+  { label: "Dashboard", href: "/researcher/dashboard" },
+  { label: "Projects", href: "/researcher/projects" },
+  { label: "Messages", href: "/researcher/messages" },
+  { label: "Payments", href: "/researcher/payments" },
 ];
 
 type Props = {
@@ -36,7 +36,7 @@ export function DashboardShell({
       <header className="sticky top-0 z-30 border-b border-[#E4E8F0] bg-white">
         <div className="mx-auto flex h-[60px] w-[min(calc(100%-32px),1200px)] items-center justify-between gap-6 md:h-[72px]">
           <Link
-            href="/dashboard"
+            href="/researcher/dashboard"
             aria-label="EnumConnect home"
             className="shrink-0"
           >

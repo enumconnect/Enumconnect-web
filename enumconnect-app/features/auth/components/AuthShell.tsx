@@ -48,7 +48,7 @@ export function SampleCard() {
 
 export function StatCard() {
   return (
-    <div className="absolute -right-4 bottom-0 flex h-[90px] w-[236px] flex-col justify-between rounded-xl bg-white p-4 shadow-lg">
+    <div className="absolute -right-[22px] -bottom-[14px] flex h-[90px] w-[236px] origin-bottom-right scale-[0.82] flex-col justify-between rounded-xl bg-white p-4 shadow-lg">
       <span className="text-xs leading-4 text-[color:var(--color-text-secondary)]">Responses reviewed</span>
       <div className="flex items-baseline justify-between">
         <span className="text-2xl leading-8 font-extrabold text-[color:var(--color-text-primary)]">
@@ -86,17 +86,17 @@ export function AuthShell({
   children,
 }: ShellContent & { topRight: ReactNode; className?: string; children: ReactNode }) {
   return (
-    <div className={`${nunito.className} flex min-w-[1100px] bg-[color:var(--color-bg-page)] ${className}`}>
-      <aside className="relative w-[600px] shrink-0 bg-[color:var(--color-primary)] text-[color:var(--color-text-on-action)]">
-        <img src="/logo-white.png" alt="EnumConnect" className="absolute top-[45px] left-16 h-[38.5px] w-[145px]" />
+    <div className={`${nunito.className} grid min-h-screen w-full grid-cols-[42%_minmax(0,1fr)] overflow-x-hidden bg-[color:var(--color-bg-page)] max-[900px]:grid-cols-1 ${className}`}>
+      <aside className="relative min-h-screen bg-[color:var(--color-primary)] text-[color:var(--color-text-on-action)] max-[900px]:hidden">
+        <img src="/logo-white.png" alt="EnumConnect" className="absolute top-[36px] left-[clamp(24px,4.4vw,52px)] h-[32px] w-[120px]" />
         <div
           role="heading"
           aria-level={1}
-          className="absolute top-[156px] left-16 text-[40px] leading-[52px] font-extrabold tracking-[-0.4px] whitespace-nowrap"
+          className="absolute top-[132px] left-[clamp(24px,4.4vw,52px)] text-[32px] leading-[40px] font-extrabold tracking-[-0.4px] whitespace-nowrap"
         >
           {headline}
         </div>
-        <ul className="absolute top-[300px] left-16 flex flex-col gap-4 text-base leading-6">
+        <ul className="absolute top-[248px] left-[clamp(24px,4.4vw,52px)] flex flex-col gap-3 text-sm leading-5">
           {points.map((t) => (
             <li key={t} className="flex items-center gap-3">
               <Tick />
@@ -104,16 +104,16 @@ export function AuthShell({
             </li>
           ))}
         </ul>
-        <div className="absolute top-[456px] left-16 h-[363px] w-[494px]">
-          <div className="absolute top-6 left-6 h-[339px] w-[470px] rounded-2xl bg-[color:var(--color-control-trust)]" />
-          <img src={photo} alt="" className="absolute top-0 left-0 h-[339px] w-[470px] rounded-2xl object-cover" />
+        <div className="absolute top-[374px] left-[clamp(24px,4.4vw,52px)] aspect-[470/339] w-[min(470px,calc(100%-104px))]">
+          <div className="absolute top-5 left-5 h-full w-full rounded-2xl bg-[color:var(--color-control-trust)]" />
+          <img src={photo} alt="" className="absolute inset-0 h-full w-full rounded-2xl object-cover" />
           {card}
         </div>
-        <p className="absolute bottom-[42px] left-16 text-base leading-6">Reliable Research. Empowered Professionals.</p>
+        <p className="absolute bottom-[36px] left-[clamp(24px,4.4vw,52px)] text-sm leading-5">Reliable Research. Empowered Professionals.</p>
       </aside>
-      <main className="relative flex-1">
-        <p className="absolute top-[49px] right-16 text-sm leading-5 text-[color:var(--color-text-secondary)]">{topRight}</p>
-        <div className="mx-auto w-[480px]">{children}</div>
+      <main className="relative min-h-screen min-w-0 bg-[color:var(--color-bg-page)]">
+        <p className="absolute top-[38px] right-[clamp(24px,4.4vw,52px)] text-sm leading-5 text-[color:var(--color-text-secondary)] max-[900px]:right-6">{topRight}</p>
+        <div className="mx-auto w-[min(394px,calc(100%-48px))] max-[900px]:w-full max-[900px]:px-6 max-[480px]:px-4">{children}</div>
       </main>
     </div>
   );
