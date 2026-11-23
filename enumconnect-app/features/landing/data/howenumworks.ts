@@ -1,5 +1,3 @@
-
-
 export type Role = "researchers" | "enumerators";
 
 export type Panel = {
@@ -12,8 +10,8 @@ export type Panel = {
 };
 
 export const tabs: { id: Role; label: string }[] = [
-  { id: "researchers", label: "For researchers" },
-  { id: "enumerators", label: "For enumerators" },
+  { id: "researchers", label: "For Researchers" },
+  { id: "enumerators", label: "For Enumerators" },
 ];
 
 export const panels: Record<Role, Panel> = {
@@ -40,7 +38,7 @@ export const panels: Record<Role, Panel> = {
         body: "Review submitted work against your project requirements. Approve accepted work and payments are processed according to the platform's payment terms.",
       },
     ],
-    cta: { label: "Post a project", href: "/signup?role=researcher" },
+    cta: { label: "Post a project", href: "/sign-up/researcher" },
   },
   enumerators: {
     image: "/images/howenumerator.svg",
@@ -65,6 +63,6 @@ export const panels: Record<Role, Panel> = {
         body: "Get paid to your bank account when work is approved, and build your rating with every project.",
       },
     ],
-    cta: { label: "Join as an enumerator", href: "/signup?role=enumerator" },
+    cta: { label: "Join as an enumerator", href: "/sign-up/enumerator" },
   },
 };

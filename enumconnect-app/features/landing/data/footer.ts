@@ -12,14 +12,14 @@ export const linkGroups = [
     title: "For researchers",
     links: [
       ["Find Enumerators", "/#for-researchers"],
-      ["Create a Project", "/signup?role=researcher"],
+      ["Create a Project", "/sign-up/researcher"],
       ["How It Works", "/#how-it-works"],
     ],
   },
   {
     title: "For enumerators",
     links: [
-      ["Join as an enumerator", "/signup?role=enumerator"],
+      ["Join as an enumerator", "/sign-up/enumerator"],
       ["Find Fieldwork Opportunities", "/#open-projects"],
       ["How Verification Works", "/#trust"],
     ],

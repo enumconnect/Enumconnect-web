@@ -57,7 +57,7 @@ export function ProjectRow({ project }: { project: Project }) {
       </div>
 
       <Link
-        href={`/projects/${project.id}`}
+        href={`/researcher/projects/${project.id}`}
         className={`inline-flex shrink-0 items-center justify-center rounded-lg px-5 py-2.5 text-[15px] font-bold transition-colors sm:min-w-[120px] ${
           a.primary
             ? "bg-[#000080] text-white hover:bg-[#17179b]"

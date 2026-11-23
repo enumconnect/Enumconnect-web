@@ -74,7 +74,7 @@ export function OpenProjects() {
           <div className="flex flex-wrap items-center gap-4 max-[640px]:block">
             <Link
               className="inline-flex min-h-[42px] items-center justify-center rounded-[8px] border border-transparent bg-white px-8 py-4 text-base font-bold text-[#000080] no-underline transition-colors hover:bg-[#eef0ff] max-[640px]:flex max-[640px]:w-full max-[640px]:min-h-14"
-              href="/signup?role=enumerator"
+              href="/sign-up/enumerator"
             >
               Find Fieldwork
             </Link>
@@ -116,7 +116,7 @@ export function OpenProjects() {
                     </span>
                   </div>
                   <Link
-                    href="/projects"
+                    href="/researcher/projects"
                     aria-label={`View project: ${title}`}
                     className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[#000080] px-[13px] py-[6px] text-white text-[12px] font-bold no-underline transition-colors hover:bg-[#17179b] max-[640px]:mt-1 max-[640px]:min-h-12 max-[640px]:text-[18px]"
                   >

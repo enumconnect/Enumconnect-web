@@ -1,12 +1,30 @@
-import { StatCard } from "@/features/auth/components/AuthShell";
-import { VerifyScreen } from "@/features/auth/components/VerifyScreen";;
+import { Suspense } from "react";
+import { StatCard, VerifyScreen } from "@/features/auth";
 
-export default function ResearcherVerify() {
+export default function ResearcherVerify({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string | string[] }>;
+}) {
+  return (
+    <Suspense fallback={<div role="status" className="grid min-h-screen place-items-center text-[#575757]">Loading verification…</div>}>
+      <ResearcherVerifyContent searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+async function ResearcherVerifyContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const email = typeof query.email === "string" ? query.email : "";
+
   return (
     <VerifyScreen
-      name="Chiamaka"
-      phone="+234 801 234 5678"
-      email="chiamaka.okafor@unn.edu.ng"
+      role="researcher"
+      initialEmail={email}
       next={["Your researcher dashboard opens", "Create your first project", "Choose from enumerators who apply"]}
       content={{
         headline: (

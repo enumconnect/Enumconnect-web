@@ -72,7 +72,7 @@ export function Navbar() {
             </Link>
             <Link
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-md bg-[#000080] px-5 text-[15px] font-bold text-white no-underline transition-colors hover:bg-[#17179b] max-[480px]:min-h-10 max-[480px]:px-3 max-[480px]:text-[13px]"
-              href="/signup"
+              href="/sign-up/researcher"
             >
               Sign up
             </Link>
@@ -126,7 +126,7 @@ export function Navbar() {
           </Link>
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#000080] px-4 text-sm font-bold text-white no-underline hover:bg-[#17179b]"
-            href="/signup"
+            href="/sign-up/researcher"
             onClick={() => setMenuOpen(false)}
           >
             Sign up

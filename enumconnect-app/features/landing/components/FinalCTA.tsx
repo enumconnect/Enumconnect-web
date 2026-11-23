@@ -34,13 +34,13 @@ export function FinalCTA() {
             <div className="flex flex-wrap gap-[10px] max-[640px]:flex-col">
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-[7px] border border-transparent bg-white px-[18px] text-base font-bold text-[#000080] no-underline transition-colors hover:bg-[#eef0ff] max-[640px]:w-full"
-                href="/signup?role=researcher"
+                href="/sign-up/researcher"
               >
                 Post a project
               </Link>
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-[7px] border border-[#b8e4c9] bg-transparent px-[18px] text-base font-bold text-white no-underline transition-colors hover:bg-white/10 max-[640px]:w-full"
-                href="/signup?role=enumerator"
+                href="/sign-up/enumerator"
               >
                 Join as an enumerator
               </Link>

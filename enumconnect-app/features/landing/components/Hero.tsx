@@ -156,7 +156,7 @@ export const Hero = () => {
               {/* enumerator CTA buttons */}
               <div className="mt-[30px] flex flex-wrap gap-3 max-[640px]:flex-col">
                 <Link
-                  href="/signup?role=enumerator"
+                  href="/sign-up/enumerator"
                   className="inline-flex min-h-12 items-center justify-center rounded-[10px] bg-[#000080] px-6 text-[16px] font-bold text-white no-underline transition-colors hover:bg-[#17179b] max-[640px]:w-full"
                 >
                   Join as an enumerator

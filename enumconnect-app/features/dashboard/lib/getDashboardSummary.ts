@@ -15,7 +15,7 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
         title: "40 responses to review",
         detail: "Chinedu O. · Household water use survey",
         actionLabel: "Review now",
-        href: "/projects/p1",
+        href: "/researcher/projects/p1",
       },
       {
         id: "a2",
@@ -23,7 +23,7 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
         title: "1 flagged response",
         detail: "Household 31 was recorded outside your LGAs",
         actionLabel: "See flag",
-        href: "/projects/p1",
+        href: "/researcher/projects/p1",
       },
       {
         id: "a3",
@@ -31,7 +31,7 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
         title: "3 new applications",
         detail: "Clinic exit interviews · 7 in total · 1 from your invites",
         actionLabel: "See applicants",
-        href: "/projects/p2",
+        href: "/researcher/projects/p2",
       },
     ],
     spending: {

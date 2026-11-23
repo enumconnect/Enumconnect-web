@@ -32,7 +32,15 @@ export function ProgressBar({ value, className = "" }: { value: number; classNam
   );
 }
 
-export function PhoneField() {
+export function PhoneField({
+  value,
+  onChange,
+  error,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}) {
   return (
     <label className="flex flex-col gap-2">
       <span className={label}>Phone number</span>
@@ -41,8 +49,18 @@ export function PhoneField() {
           +234
           <Chevron />
         </span>
-        <input type="tel" placeholder="801 234 5678" className={`${bare} px-3`} />
+        <input
+          type="tel"
+          inputMode="numeric"
+          autoComplete="tel-national"
+          placeholder="801 234 5678"
+          value={value}
+          onChange={(event) => onChange(event.target.value.replace(/\D/g, "").slice(0, 10))}
+          aria-invalid={error ? true : undefined}
+          className={`${bare} px-3`}
+        />
       </span>
+      {error ? <span role="alert" className="text-xs leading-4 font-semibold text-[color:var(--color-border-error)]">{error}</span> : null}
     </label>
   );
 }
