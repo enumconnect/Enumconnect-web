@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AuthShell, SignUpForm, StatCard } from "@/features/auth";
-import { ProgressBar, SelectField } from "@/components/ui/FormParts";
+import { ProgressBar } from "@/components/ui/FormParts";
 import { RoleTabs } from "@/components/ui/RoleTabs";
 
 const link = "font-bold text-[color:var(--color-text-link)]";
@@ -40,12 +40,6 @@ export default function ResearcherSignUp() {
           namePlaceholder="John James"
           passwordHint="At least 8 characters, including a number."
           bannerText="Supervising students? Sign up as a researcher too."
-          extra={
-            <>
-              <SelectField label="Institution or organisation (optional)" placeholder="Select or type your institution" />
-              <SelectField label="Research area" placeholder="e.g. Public health" />
-            </>
-          }
         />
       </div>
     </AuthShell>
