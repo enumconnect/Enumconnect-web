@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getNigerianLgas, nigerianStates } from "./nigerianLocations";
 
 export const emailSchema = z.string().trim().toLowerCase().email().max(254);
 export const phoneSchema = z.string().regex(/^\+234[789]\d{9}$/);
@@ -10,14 +11,35 @@ const passwordSchema = z
   .max(72)
   .regex(/[0-9]/, "Password must include a number");
 
-export const signupSchema = z.object({
+const signupFields = {
   email: emailSchema,
   password: passwordSchema,
   phone: phoneSchema,
-  // 'staff' is deliberately not accepted: staff accounts are never self-service.
-  role: z.enum(["researcher", "enumerator"]),
   fullName: z.string().trim().min(1).max(120).optional(),
-});
+};
+
+export const signupSchema = z.discriminatedUnion("role", [
+  z.object({
+    ...signupFields,
+    role: z.literal("researcher"),
+    institution: z.string().trim().max(200).optional().transform((value) => value || undefined),
+    researchArea: z.string().trim().min(1).max(160),
+  }),
+  z.object({
+    ...signupFields,
+    role: z.literal("enumerator"),
+    state: z.string().refine((state) => nigerianStates.includes(state), "Select a valid Nigerian state."),
+    lga: z.string(),
+  }).superRefine(({ state, lga }, context) => {
+    if (nigerianStates.includes(state) && !getNigerianLgas(state).includes(lga)) {
+      context.addIssue({
+        code: "custom",
+        path: ["lga"],
+        message: "Select an LGA in the selected state.",
+      });
+    }
+  }),
+]);
 
 export const loginSchema = z.object({
   email: emailSchema,

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AuthShell, SignUpForm } from "@/features/auth";
-import { ProgressBar, SelectField } from "@/components/ui/FormParts";
+import { ProgressBar } from "@/components/ui/FormParts";
 import { RoleTabs } from "@/components/ui/RoleTabs";
 
 const link = "font-bold text-[color:var(--color-text-link)]";
@@ -30,14 +30,6 @@ export default function EnumeratorSignUp() {
           namePlaceholder="e.g John James"
           passwordHint="At least 8 characters, including a number."
           bannerText="Free to join. You never pay to apply for projects."
-          extra={
-            <>
-              <div className="grid grid-cols-2 gap-4">
-                <SelectField label="State" placeholder="Select state" />
-                <SelectField label="Main LGA" placeholder="Select LGA" />
-              </div>
-            </>
-          }
         />
       </div>
     </AuthShell>

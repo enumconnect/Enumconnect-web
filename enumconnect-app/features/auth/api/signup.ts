@@ -16,7 +16,16 @@ export async function POST(request: Request) {
     password,
     options: {
       emailRedirectTo: `${origin}/auth/callback?next=/verify-account/${role}`,
-      data: { role, full_name: fullName, phone_number: phone },
+      data: {
+        role,
+        full_name: fullName,
+        phone_number: phone,
+        ...(role === "enumerator" ? { state: parsed.data.state, lga: parsed.data.lga } : {}),
+        ...(role === "researcher" ? {
+          institution: parsed.data.institution,
+          research_area: parsed.data.researchArea,
+        } : {}),
+      },
     },
   });
 
