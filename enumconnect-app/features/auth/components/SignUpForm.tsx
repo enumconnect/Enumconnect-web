@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type ChangeEvent, type FormEvent } from "react";
+import { useId, useState, type ChangeEvent, type FocusEvent, type FormEvent, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { PhoneField } from "@/components/ui/FormParts";
@@ -39,6 +39,154 @@ function ChevronDown() {
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0 text-[color:var(--color-text-body)]">
       <path d="M5.5 8l4.5 4.5L14.5 8" />
     </svg>
+  );
+}
+
+function SuggestionDropdown({
+  label: fieldLabel,
+  name,
+  value,
+  onChange,
+  options,
+  placeholder,
+  optional = false,
+  maxLength,
+  error,
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: readonly string[];
+  placeholder: string;
+  optional?: boolean;
+  maxLength: number;
+  error?: string;
+}) {
+  const id = useId();
+  const listId = useId();
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const filteredOptions = options.filter((option) =>
+    option.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()),
+  );
+
+  function handleBlur(event: FocusEvent<HTMLDivElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setOpen(false);
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (!open) {
+        setQuery("");
+        setOpen(true);
+      } else if (filteredOptions.length > 0) {
+        setActiveIndex((index) =>
+          event.key === "ArrowDown"
+            ? (index + 1) % filteredOptions.length
+            : (index - 1 + filteredOptions.length) % filteredOptions.length,
+        );
+      }
+    } else if (event.key === "Enter" && open && filteredOptions[activeIndex]) {
+      event.preventDefault();
+      onChange(filteredOptions[activeIndex]);
+      setOpen(false);
+    } else if (event.key === "Escape") {
+      setOpen(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2" onBlur={handleBlur}>
+      <label htmlFor={id} className={label}>
+        {fieldLabel}{optional ? " (optional)" : ""}
+      </label>
+      <div className="relative">
+        <input
+          id={id}
+          name={name}
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-activedescendant={open && filteredOptions[activeIndex] ? `${listId}-${activeIndex}` : undefined}
+          aria-invalid={error ? true : undefined}
+          required={!optional}
+          maxLength={maxLength}
+          autoComplete="off"
+          value={value}
+          placeholder={placeholder}
+          onFocus={() => {
+            setQuery("");
+            setActiveIndex(0);
+            setOpen(true);
+          }}
+          onChange={(event) => {
+            onChange(event.target.value);
+            setQuery(event.target.value);
+            setActiveIndex(0);
+            setOpen(true);
+          }}
+          onKeyDown={handleKeyDown}
+          className={`h-[52px] w-full rounded-[var(--radius-md)] border bg-[color:var(--color-bg-surface)] px-3 pr-10 text-base text-[color:var(--color-text-primary)] outline-none placeholder:text-[color:var(--color-text-placeholder)] focus:border-[color:var(--color-border-focus)] ${
+            error ? "border-[color:var(--color-border-error)] ring-1 ring-[color:var(--color-border-error)]" : "border-[color:var(--color-border-default)]"
+          }`}
+        />
+        <button
+          type="button"
+          aria-label={`${open ? "Hide" : "Show"} ${fieldLabel} suggestions`}
+          aria-expanded={open}
+          aria-controls={listId}
+          onClick={() => {
+            setQuery("");
+            setActiveIndex(0);
+            setOpen((current) => !current);
+          }}
+          className="absolute inset-y-0 right-0 flex w-10 items-center justify-center"
+        >
+          <ChevronDown />
+        </button>
+        {open ? (
+          <ul
+            id={listId}
+            role="listbox"
+            aria-label={`${fieldLabel} suggestions`}
+            className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-[var(--radius-md)] border border-[color:var(--color-border-default)] bg-[color:var(--color-bg-surface)] py-1 shadow-lg"
+          >
+            {filteredOptions.length > 0 ? filteredOptions.map((option, index) => (
+              <li
+                key={option}
+                id={`${listId}-${index}`}
+                role="option"
+                aria-selected={value === option}
+                onMouseEnter={() => setActiveIndex(index)}
+                className={`cursor-pointer px-3 py-2 text-sm text-[color:var(--color-text-primary)] ${
+                  index === activeIndex ? "bg-[color:var(--color-bg-selected)]" : ""
+                }`}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => {
+                  onChange(option);
+                  setOpen(false);
+                }}
+              >
+                {option}
+              </li>
+            )) : (
+              <li className="px-3 py-2 text-sm text-[color:var(--color-text-secondary)]">
+                No suggestions. Your entry will be used.
+              </li>
+            )}
+          </ul>
+        ) : null}
+      </div>
+      {error ? (
+        <span role="alert" className={`${note} ${red}`}>{error}</span>
+      ) : null}
+    </div>
   );
 }
 
@@ -191,8 +339,6 @@ export function SignUpForm({
   const [formError, setFormError] = useState("");
   const stateId = useId();
   const lgaId = useId();
-  const institutionListId = useId();
-  const researchAreaListId = useId();
 
   const { data, errors } = check(values, role);
   const shown = (f: Field) => (touched[f] || submitted ? errors[f] : undefined);
@@ -259,44 +405,27 @@ export function SignUpForm({
         />
         {role === "researcher" ? (
           <>
-            <TextField
-              label="Institution or organisation (optional)"
+            <SuggestionDropdown
+              label="Institution or organisation"
               name="institution"
-              list={institutionListId}
-              autoComplete="organization"
+              optional
               placeholder="Select or type your institution"
-              trailing={<ChevronDown />}
-              className="h-[52px]"
-              maxLength={200}
               value={values.institution}
-              onChange={change("institution")}
-              onBlur={blur("institution")}
+              onChange={(institution) => setValues((current) => ({ ...current, institution }))}
+              options={nigerianUniversities}
+              maxLength={200}
               error={shown("institution")}
             />
-            <datalist id={institutionListId}>
-              {nigerianUniversities.map((institution) => (
-                <option key={institution} value={institution} />
-              ))}
-            </datalist>
-            <TextField
+            <SuggestionDropdown
               label="Research area"
               name="researchArea"
-              list={researchAreaListId}
               placeholder="e.g. Public health"
-              trailing={<ChevronDown />}
-              className="h-[52px]"
-              required
-              maxLength={160}
               value={values.researchArea}
-              onChange={change("researchArea")}
-              onBlur={blur("researchArea")}
+              onChange={(researchArea) => setValues((current) => ({ ...current, researchArea }))}
+              options={fieldworkTypes}
+              maxLength={160}
               error={shown("researchArea")}
             />
-            <datalist id={researchAreaListId}>
-              {fieldworkTypes.map((area) => (
-                <option key={area} value={area} />
-              ))}
-            </datalist>
           </>
         ) : (
           <div className="grid grid-cols-2 gap-4">
