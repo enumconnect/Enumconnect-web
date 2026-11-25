@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     type: "signup",
     email: parsed.data.email,
     options: {
-      emailRedirectTo: `${origin}/auth/callback?next=/verify-account/${parsed.data.role}`,
+      emailRedirectTo: `${origin}/auth/signup-confirmation`,
     },
   });
 

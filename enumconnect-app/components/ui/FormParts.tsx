@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { countryCallingCodes, maxNationalNumberLength } from "@/features/auth/lib/phone";
 
 const label = "text-sm leading-5 font-bold text-[color:var(--color-text-primary)]";
 const hintCls = "text-xs leading-4 font-semibold text-[color:var(--color-text-secondary)]";
@@ -35,27 +36,37 @@ export function ProgressBar({ value, className = "" }: { value: number; classNam
 export function PhoneField({
   value,
   onChange,
+  callingCode,
+  onCallingCodeChange,
   error,
 }: {
   value: string;
   onChange: (value: string) => void;
+  callingCode: string;
+  onCallingCodeChange: (callingCode: string) => void;
   error?: string;
 }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className={label}>Phone number</span>
+      <span className={label}>Phone number (optional)</span>
       <span className={`${box} overflow-hidden`}>
-        <span className="flex h-full w-[88px] shrink-0 items-center justify-center gap-1 border-r border-[color:var(--color-border-subtle)] bg-[color:var(--color-bg-selected)] font-bold text-[color:var(--color-text-primary)]">
-          +234
-          <Chevron />
-        </span>
+        <select
+          aria-label="Country calling code"
+          value={callingCode}
+          onChange={(event) => onCallingCodeChange(event.target.value)}
+          className="h-full w-[88px] shrink-0 border-r border-[color:var(--color-border-subtle)] bg-[color:var(--color-bg-selected)] px-2 text-sm font-bold text-[color:var(--color-text-primary)] outline-none"
+        >
+          {countryCallingCodes.map(({ iso, code }) => (
+            <option key={iso} value={code}>{code}</option>
+          ))}
+        </select>
         <input
           type="tel"
           inputMode="numeric"
           autoComplete="tel-national"
-          placeholder="801 234 5678"
+          placeholder="Phone number"
           value={value}
-          onChange={(event) => onChange(event.target.value.replace(/\D/g, "").slice(0, 10))}
+          onChange={(event) => onChange(event.target.value.replace(/\D/g, "").slice(0, maxNationalNumberLength(callingCode)))}
           aria-invalid={error ? true : undefined}
           className={`${bare} px-3`}
         />

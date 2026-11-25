@@ -19,8 +19,7 @@ type Props = {
 
 export function WelcomeView({ researcher, progress, access }: Props) {
   const firstName = getFirstName(researcher.fullName);
-  const verified =
-    researcher.emailVerified && researcher.phoneVerified && progress.complete;
+  const verified = researcher.emailVerified && progress.complete;
 
   return (
     <>
@@ -38,7 +37,6 @@ export function WelcomeView({ researcher, progress, access }: Props) {
         <VerifiedBadges
           verifiedResearcher={verified}
           emailVerified={researcher.emailVerified}
-          phoneVerified={researcher.phoneVerified}
         />
       </div>
 

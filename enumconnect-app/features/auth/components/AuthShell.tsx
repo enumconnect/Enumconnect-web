@@ -1,7 +1,5 @@
-import { Nunito } from "next/font/google";
+import Image from "next/image";
 import type { ReactNode } from "react";
-
-const nunito = Nunito({ subsets: ["latin"] });
 
 const defaultPoints = [
   "Legitimate, funded research projects",
@@ -86,13 +84,13 @@ export function AuthShell({
   children,
 }: ShellContent & { topRight: ReactNode; className?: string; children: ReactNode }) {
   return (
-    <div className={`${nunito.className} grid min-h-screen w-full grid-cols-[42%_minmax(0,1fr)] overflow-x-hidden bg-[color:var(--color-bg-page)] max-[900px]:grid-cols-1 ${className}`}>
-      <aside className="relative min-h-screen bg-[color:var(--color-primary)] text-[color:var(--color-text-on-action)] max-[900px]:hidden">
-        <img src="/logo-white.png" alt="EnumConnect" className="absolute top-[36px] left-[clamp(24px,4.4vw,52px)] h-[32px] w-[120px]" />
+    <div className={`grid min-h-screen w-full grid-cols-[42%_minmax(0,1fr)] overflow-x-hidden bg-[color:var(--color-bg-page)] max-[900px]:grid-cols-1 ${className}`}>
+      <aside className="relative min-h-screen overflow-hidden bg-[color:var(--color-primary)] text-[color:var(--color-text-on-action)] max-[900px]:hidden">
+        <Image src="/logo-white.png" alt="EnumConnect" width={120} height={32} priority className="absolute top-[36px] left-[clamp(24px,4.4vw,52px)] h-[32px] w-[120px]" />
         <div
           role="heading"
           aria-level={1}
-          className="absolute top-[132px] left-[clamp(24px,4.4vw,52px)] text-[32px] leading-[40px] font-extrabold tracking-[-0.4px] whitespace-nowrap"
+          className="absolute top-[132px] left-[clamp(24px,4.4vw,52px)] max-w-[calc(100%-104px)] text-[40px] leading-[48px] font-extrabold tracking-[-0.4px]"
         >
           {headline}
         </div>
@@ -104,9 +102,9 @@ export function AuthShell({
             </li>
           ))}
         </ul>
-        <div className="absolute top-[374px] left-[clamp(24px,4.4vw,52px)] aspect-[470/339] w-[min(470px,calc(100%-104px))]">
+        <div className="absolute top-[374px] left-[clamp(24px,4.4vw,52px)] aspect-[470/339] w-[min(470px,calc(100%-126px))]">
           <div className="absolute top-5 left-5 h-full w-full rounded-2xl bg-[color:var(--color-control-trust)]" />
-          <img src={photo} alt="" className="absolute inset-0 h-full w-full rounded-2xl object-cover" />
+          <Image src={photo} alt="" fill sizes="(max-width: 900px) 0px, 42vw" className="rounded-2xl object-cover" />
           {card}
         </div>
         <p className="absolute bottom-[36px] left-[clamp(24px,4.4vw,52px)] text-sm leading-5">Reliable Research. Empowered Professionals.</p>

@@ -1,8 +1,14 @@
 import { z } from "zod";
 import { getNigerianLgas, nigerianStates } from "./nigerianLocations";
+import { isValidInternationalPhone } from "./phone";
 
 export const emailSchema = z.string().trim().toLowerCase().email().max(254);
-export const phoneSchema = z.string().regex(/^\+234[789]\d{9}$/);
+export const phoneSchema = z
+  .string()
+  .trim()
+  .transform((value) => value || undefined)
+  .optional()
+  .refine((value) => value === undefined || isValidInternationalPhone(value), "Enter a valid international phone number.");
 
 // Keep in step with the password policy configured in Supabase Auth.
 const passwordSchema = z

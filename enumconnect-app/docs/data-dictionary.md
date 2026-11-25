@@ -16,7 +16,7 @@ Retention values marked **TBD** wait on the retention schedule decision (access-
 | full_name | Display name for communication | Owner; support, platform_admin | Owner | TBD |
 | created_at, updated_at | Record keeping | Same as row | System | Life of account |
 
-Email and phone live in Supabase Auth (`auth.users`) and are not copied here, to avoid a second copy of personal data.
+Email and optional phone number live in Supabase Auth (`auth.users`) and are not copied here, to avoid a second copy of personal data.
 
 ### staff_roles
 
