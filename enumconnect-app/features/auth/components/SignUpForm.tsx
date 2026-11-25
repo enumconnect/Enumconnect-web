@@ -193,7 +193,7 @@ function SuggestionDropdown({
 function check(values: Values, role: Role) {
   const result = signupSchema.safeParse({
     ...values,
-    phone: `+234${values.phone}`,
+    phone: values.phone.trim() ? `+234${values.phone.trim()}` : undefined,
     role,
   });
   const errors: Partial<Record<Field, string>> = {};
