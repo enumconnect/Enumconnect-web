@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { routes } from "../lib/routes";
 
 const items = [
-  "Email and phone verified",
+  "Email verified",
   "Name, institution, research area",
   "Department and research level",
   "Short bio and profile photo",
@@ -24,7 +24,7 @@ export function VerifiedCard() {
         </h2>
       </div>
       <p className="mb-5 mt-5 text-[16px] leading-[1.6] text-[#424242]">
-        Email, phone and profile are complete. Enumerators will see a Verified
+        Email and profile are complete. Enumerators will see a Verified
         researcher badge on your projects.
       </p>
       <ul className="m-0 grid list-none gap-3.5 p-0">

@@ -22,19 +22,16 @@ function Badge({
 type Props = {
   verifiedResearcher: boolean;
   emailVerified: boolean;
-  phoneVerified: boolean;
 };
 
 export function VerifiedBadges({
   verifiedResearcher,
   emailVerified,
-  phoneVerified,
 }: Props) {
   return (
     <div className="flex flex-wrap gap-3">
       {verifiedResearcher && <Badge solid>Verified researcher</Badge>}
       {emailVerified && <Badge>Email verified</Badge>}
-      {phoneVerified && <Badge>Phone verified</Badge>}
     </div>
   );
 }

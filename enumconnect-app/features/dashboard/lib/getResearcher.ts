@@ -38,7 +38,6 @@ export async function getResearcher(): Promise<Researcher> {
     fullName: profile.full_name || nameFromEmail(user.email ?? "") || "Researcher",
     status: profile.account_status === "suspended" ? "suspended" : "active",
     emailVerified: Boolean(user.email_confirmed_at),
-    phoneVerified: Boolean(user.phone_confirmed_at),
     hasNotifications: false,
     profile: {
       department: null,

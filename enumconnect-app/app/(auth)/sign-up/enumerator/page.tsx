@@ -21,7 +21,7 @@ export default function EnumeratorSignUp() {
             Create your enumerator account
           </div>
           <p className="mt-1 text-xs leading-4 font-semibold text-[color:var(--color-text-secondary)]">
-            Step 1 of 2 · next, verify your email and phone
+            Step 1 of 2 · next, verify your email
           </p>
         </div>
         <ProgressBar value={50} className="mt-3" />

@@ -69,7 +69,7 @@ export function FinishProfileModal({ open, onClose, progress }: Props) {
         <MeterBar value={progress.percent} label="Profile completeness" />
 
         <ul className="m-0 mt-5 grid list-none gap-3.5 rounded-2xl border border-[#E4E8F0] bg-[#F8FFFD] p-5">
-          <DoneRow>Email and phone verified</DoneRow>
+          <DoneRow>Email verified</DoneRow>
           <DoneRow>Name, institution, research area</DoneRow>
           {progress.missing.map((key) => (
             <li

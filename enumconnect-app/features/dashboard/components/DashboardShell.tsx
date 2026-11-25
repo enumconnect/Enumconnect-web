@@ -41,7 +41,7 @@ export function DashboardShell({
             className="shrink-0"
           >
             <Image
-              src="/images/logo.svg"
+              src="/icons/EnumLogo.svg"
               alt="EnumConnect"
               width={150}
               height={40}

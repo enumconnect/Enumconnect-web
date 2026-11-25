@@ -8,6 +8,7 @@ import { InfoBanner } from "@/components/ui/InfoBanner";
 import { TextField } from "@/components/ui/TextField";
 import { nigerianUniversities } from "@/features/auth/data/nigerianUniversities";
 import { signupSchema } from "@/features/auth/lib/validation";
+import { toInternationalPhone } from "@/features/auth/lib/phone";
 import { getNigerianLgas, nigerianStates } from "@/features/auth/lib/nigerianLocations";
 import { fieldworkTypes } from "@/features/landing/data/hero";
 
@@ -23,7 +24,7 @@ const link = "font-bold text-[color:var(--color-text-link)] underline";
 function describe(field: Field, code: string, minimum: unknown) {
   if (field === "fullName") return "Enter your full name.";
   if (field === "email") return "Enter a valid email address.";
-  if (field === "phone") return "Enter a valid Nigerian mobile number.";
+  if (field === "phone") return "Enter a valid international phone number.";
   if (field === "state") return "Select a valid Nigerian state.";
   if (field === "lga") return "Select an LGA in the selected state.";
   if (field === "researchArea") return "Enter your research area.";
@@ -190,10 +191,10 @@ function SuggestionDropdown({
   );
 }
 
-function check(values: Values, role: Role) {
+function check(values: Values, role: Role, callingCode: string) {
   const result = signupSchema.safeParse({
     ...values,
-    phone: `+234${values.phone}`,
+    phone: toInternationalPhone(callingCode, values.phone),
     role,
   });
   const errors: Partial<Record<Field, string>> = {};
@@ -332,6 +333,7 @@ export function SignUpForm({
     institution: "",
     researchArea: "",
   });
+  const [callingCode, setCallingCode] = useState("+234");
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [terms, setTerms] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -340,7 +342,7 @@ export function SignUpForm({
   const stateId = useId();
   const lgaId = useId();
 
-  const { data, errors } = check(values, role);
+  const { data, errors } = check(values, role, callingCode);
   const shown = (f: Field) => (touched[f] || submitted ? errors[f] : undefined);
   const change = (f: Field) => (e: ChangeEvent<HTMLInputElement>) =>
     setValues((v) => ({ ...v, [f]: e.target.value }));
@@ -400,6 +402,8 @@ export function SignUpForm({
       <div className="mt-4 flex flex-col gap-4">
         <PhoneField
           value={values.phone}
+          callingCode={callingCode}
+          onCallingCodeChange={setCallingCode}
           onChange={(phone) => setValues((current) => ({ ...current, phone }))}
           error={shown("phone")}
         />

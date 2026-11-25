@@ -12,7 +12,6 @@ export type Researcher = {
   fullName: string;
   status: AccountStatus;
   emailVerified: boolean;
-  phoneVerified: boolean;
   hasNotifications: boolean;
   profile: ProfileFields;
 };
