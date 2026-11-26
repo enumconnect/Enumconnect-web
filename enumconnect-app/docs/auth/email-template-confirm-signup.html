@@ -1,0 +1,43 @@
+<!--
+  Supabase Auth > Email Templates > "Confirm sign up"
+
+  Subject line to use:  Your EnumConnect verification code
+
+  Variables are filled in by Supabase:
+    {{ .Token }}      the 6-digit code the user types into the app
+    {{ .TokenHash }}  used by the link; our backend route /auth/confirm checks it
+    {{ .SiteURL }}    the Site URL set in Auth > URL Configuration
+
+  The link points at OUR route (/auth/confirm), not at Supabase directly, so it
+  works even if the user opens it in a different browser from the one they
+  signed up in. The route exists in auth v2 (app/auth/confirm/route.ts). Deploy
+  that code to wherever {{ .SiteURL }} points BEFORE switching this template to
+  the new link; until then keep Supabase's default {{ .ConfirmationURL }} link.
+  "next=/onboarding" is a placeholder: use the page the frontend wants users to
+  land on after confirming. It must be a path on this site, not a full URL.
+-->
+<div style="font-family: Arial, Helvetica, sans-serif; max-width: 480px; margin: 0 auto; padding: 24px; color: #1a1a1a;">
+  <h2 style="color: #0a0a6e; margin: 0 0 16px;">Verify your email</h2>
+
+  <p style="margin: 0 0 16px;">Welcome to EnumConnect. Enter this code in the app to verify your email address:</p>
+
+  <p style="font-size: 32px; letter-spacing: 8px; font-weight: bold; text-align: center; margin: 24px 0; color: #0a0a6e;">
+    {{ .Token }}
+  </p>
+
+  <p style="margin: 0 0 16px;">Or confirm with one tap:</p>
+
+  <p style="margin: 0 0 24px;">
+    <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/onboarding"
+       style="background: #0a0a6e; color: #ffffff; padding: 12px 20px; text-decoration: none; border-radius: 6px; display: inline-block;">
+      Confirm email address
+    </a>
+  </p>
+
+  <p style="font-size: 13px; color: #555555; margin: 0 0 8px;">
+    This code expires soon. If you did not create an EnumConnect account, you can ignore this email.
+  </p>
+  <p style="font-size: 13px; color: #555555; margin: 0;">
+    EnumConnect will never ask you for this code by phone, WhatsApp or email.
+  </p>
+</div>

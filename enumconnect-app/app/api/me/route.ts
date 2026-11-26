@@ -37,5 +37,16 @@ export async function GET() {
     return Response.json({ error: "Not found" }, { status: 404, headers: NO_STORE });
   }
 
-  return Response.json({ profile }, { headers: NO_STORE });
+  return Response.json(
+    {
+      profile,
+      // Phone lives in Supabase Auth only; we do not copy it into our tables.
+      phone: user.phone ? user.phone : null,
+      verification: {
+        email: Boolean(user.email_confirmed_at),
+        phone: Boolean(user.phone_confirmed_at),
+      },
+    },
+    { headers: NO_STORE },
+  );
 }
